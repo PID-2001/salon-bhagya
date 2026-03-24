@@ -3,7 +3,7 @@
 import {
   createContext,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useState,
   useCallback,
 } from "react";
@@ -22,40 +22,33 @@ const ThemeContext = createContext<ThemeContextValue>({
   isDark: true,
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+const THEME_STORAGE_KEY = "salon-theme";
 
-  // On mount — read saved preference or system preference
-  useEffect(() => {
-    const saved = localStorage.getItem("salon-theme") as Theme | null;
-    if (saved === "dark" || saved === "light") {
-      setTheme(saved);
-    } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
-    setMounted(true);
-  }, []);
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "dark";
+  const saved = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+  if (saved === "dark" || saved === "light") return saved;
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return prefersDark ? "dark" : "light";
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
   // Apply class to <html> whenever theme changes
-  useEffect(() => {
-    if (!mounted) return;
+  useLayoutEffect(() => {
     const root = document.documentElement;
     if (theme === "light") {
       root.classList.add("light");
     } else {
       root.classList.remove("light");
     }
-    localStorage.setItem("salon-theme", theme);
-  }, [theme, mounted]);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   }, []);
-
-  // Prevent flash of wrong theme
-  if (!mounted) return null;
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, isDark: theme === "dark" }}>

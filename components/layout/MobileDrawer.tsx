@@ -69,7 +69,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
           <div>
             <div style={{
-              fontFamily: "Cinzel, serif",
+              fontFamily: "var(--font-cinzel)",
               fontSize: "1.1rem",
               fontWeight: 700,
               letterSpacing: "0.12em",
@@ -78,7 +78,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
               THE ONE
             </div>
             <div style={{
-              fontFamily: "Cormorant Garamond, serif",
+              fontFamily: "var(--font-cormorant)",
               fontSize: "0.65rem",
               letterSpacing: "0.3em",
               color: "var(--text-muted)",
@@ -128,8 +128,8 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
               key={`${link.label}-${link.href}`}
               href={link.href}
               onClick={onClose}
-              style={{
-                fontFamily: "Cinzel, serif",
+                style={{
+                fontFamily: "var(--font-cinzel)",
                 fontSize: "0.85rem",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -169,7 +169,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
               borderRadius: "4px",
               cursor: "pointer",
               color: "var(--text-muted)",
-              fontFamily: "Cinzel, serif",
+              fontFamily: "var(--font-cinzel)",
               fontSize: "0.7rem",
               letterSpacing: "0.15em",
               textTransform: "uppercase",

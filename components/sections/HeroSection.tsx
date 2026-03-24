@@ -230,7 +230,7 @@ export default function HeroSection() {
           <Sparkles size={12} color="var(--accent)" />
           <span
             style={{
-              fontFamily: "Cinzel, serif",
+              fontFamily: "var(--font-cinzel)",
               fontSize: "0.62rem",
               letterSpacing: "0.28em",
               textTransform: "uppercase",
@@ -259,7 +259,7 @@ export default function HeroSection() {
               key={i}
               aria-hidden
               style={{
-                fontFamily: "Cinzel, serif",
+                fontFamily: "var(--font-cinzel)",
                 fontSize: "clamp(3.5rem, 10vw, 8.5rem)",
                 fontWeight: 800,
                 letterSpacing: letter === " " ? "0.15em" : "0.08em",
@@ -299,7 +299,7 @@ export default function HeroSection() {
         >
           <p
             style={{
-              fontFamily: "Cormorant Garamond, serif",
+              fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(0.85rem, 2vw, 1.1rem)",
               fontWeight: 300,
               letterSpacing: "0.55em",
@@ -351,7 +351,7 @@ export default function HeroSection() {
         {/* Tagline */}
         <p
           style={{
-            fontFamily: "Cormorant Garamond, serif",
+            fontFamily: "var(--font-cormorant)",
             fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
             fontWeight: 400,
             fontStyle: "italic",
@@ -420,7 +420,7 @@ export default function HeroSection() {
             <div key={stat.label} style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontFamily: "Cinzel, serif",
+                  fontFamily: "var(--font-cinzel)",
                   fontSize: "clamp(1.4rem, 3vw, 2rem)",
                   fontWeight: 700,
                   background: "linear-gradient(135deg, #C9A84C, #F5D78E)",
@@ -434,7 +434,7 @@ export default function HeroSection() {
               </div>
               <div
                 style={{
-                  fontFamily: "Cormorant Garamond, serif",
+                  fontFamily: "var(--font-cormorant)",
                   fontSize: "0.75rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
@@ -474,7 +474,7 @@ export default function HeroSection() {
               <span
                 key={i}
                 style={{
-                  fontFamily: "Cinzel, serif",
+                  fontFamily: "var(--font-cinzel)",
                   fontSize: "0.65rem",
                   letterSpacing: "0.25em",
                   textTransform: "uppercase",
@@ -516,9 +516,9 @@ export default function HeroSection() {
           transition: "opacity 1s ease 0.5s",
         }}
       >
-        <span
-          style={{
-            fontFamily: "Cinzel, serif",
+            <span
+              style={{
+                fontFamily: "var(--font-cinzel)",
             fontSize: "0.55rem",
             letterSpacing: "0.3em",
             textTransform: "uppercase",

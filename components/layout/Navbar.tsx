@@ -131,7 +131,7 @@ export default function Navbar() {
 
               <span
                 style={{
-                  fontFamily:     "Cinzel, serif",
+                  fontFamily:     "var(--font-cinzel)",
                   fontSize:       "1.2rem",
                   fontWeight:     800,
                   letterSpacing:  "0.2em",
@@ -149,7 +149,7 @@ export default function Navbar() {
             </div>
 
             <span style={{
-              fontFamily:    "Cormorant Garamond, serif",
+              fontFamily:    "var(--font-cormorant)",
               fontSize:      "0.58rem",
               letterSpacing: "0.38em",
               color:         "var(--text-muted)",
@@ -196,7 +196,7 @@ export default function Navbar() {
                 href={link.href}
                 onMouseEnter={handleLinkHover}
                 style={{
-                  fontFamily:    "Cinzel, serif",
+                  fontFamily:    "var(--font-cinzel)",
                   fontSize:      "0.68rem",
                   fontWeight:    500,
                   letterSpacing: "0.18em",
