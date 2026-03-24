@@ -101,6 +101,7 @@ export default function ServicesSection() {
           title={<>Our <span className="text-gold-gradient">Services</span></>}
           subtitle="From transformative hair artistry to indulgent wellness rituals — every service at THE ONE is a curated experience in luxury."
           isInView={isInView}
+          spaceBelow="clamp(1.75rem, 4vw, 2.75rem)"
         />
 
         {/* ── Category tabs ── */}

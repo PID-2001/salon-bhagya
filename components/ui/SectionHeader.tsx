@@ -9,6 +9,8 @@ interface SectionHeaderProps {
   align?: "left" | "center" | "right";
   animate?: boolean;
   isInView?: boolean;
+  /** Controls the spacing below the header block so sections can tuck content tighter when needed. */
+  spaceBelow?: string | number;
 }
 
 export default function SectionHeader({
@@ -18,6 +20,7 @@ export default function SectionHeader({
   align = "center",
   animate = true,
   isInView = true,
+  spaceBelow = "5rem",
 }: SectionHeaderProps) {
   const alignClass =
     align === "center"
@@ -25,13 +28,16 @@ export default function SectionHeader({
       : align === "right"
       ? "text-right items-end"
       : "text-left items-start";
+  const resolvedSpaceBelow =
+    typeof spaceBelow === "number" ? `${spaceBelow}px` : spaceBelow;
 
   return (
     <motion.div
       initial={animate ? { opacity: 0, y: 30 } : false}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`flex flex-col ${alignClass} mb-20`}
+      className={`flex flex-col ${alignClass}`}
+      style={{ marginBottom: resolvedSpaceBelow }}
     >
       <span className="section-label">{label}</span>
 
