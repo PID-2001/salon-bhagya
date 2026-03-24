@@ -263,7 +263,7 @@ export default function HeroSection() {
                 fontSize: "clamp(3.5rem, 10vw, 8.5rem)",
                 fontWeight: 800,
                 letterSpacing: letter === " " ? "0.15em" : "0.08em",
-                background:
+                backgroundImage:
                   "linear-gradient(135deg, #C9A84C 0%, #F5D78E 40%, #C9A84C 70%, #92640A 100%)",
                 backgroundSize: "200% auto",
                 WebkitBackgroundClip: "text",

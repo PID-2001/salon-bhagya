@@ -123,7 +123,7 @@ export default function Navbar() {
                   fontSize:       "1.2rem",
                   fontWeight:     800,
                   letterSpacing:  "0.2em",
-                  background:     "linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%)",
+                  backgroundImage: "linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%)",
                   backgroundSize: "200% auto",
                   WebkitBackgroundClip: "text",
                   backgroundClip:      "text",

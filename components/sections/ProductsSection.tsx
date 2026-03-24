@@ -165,15 +165,19 @@ export default function ProductsSection() {
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className="absolute top-0 right-0 w-[600px] h-[600px]"
+          className="absolute top-0 right-0"
           style={{
+            width: "600px",
+            height: "600px",
             background:
               "radial-gradient(circle at top right, rgba(var(--accent-rgb),0.05) 0%, transparent 65%)",
           }}
         />
         <div
-          className="absolute bottom-0 left-0 w-[500px] h-[500px]"
+          className="absolute bottom-0 left-0"
           style={{
+            width: "500px",
+            height: "500px",
             background:
               "radial-gradient(circle at bottom left, rgba(var(--accent-rgb),0.04) 0%, transparent 65%)",
           }}
@@ -599,10 +603,11 @@ function ProductCard({
               gap: "0.4rem",
               padding: "0.45rem 1rem",
               borderRadius: "2px",
-              background: hovered
+              backgroundImage: hovered
                 ? "linear-gradient(135deg,#C9A84C 0%,#F5D78E 50%,#C9A84C 100%)"
-                : "transparent",
+                : "none",
               backgroundSize: "200% auto",
+              backgroundPosition: hovered ? "right center" : "left center",
               border: `1px solid ${hovered ? "transparent" : "var(--accent)"}`,
               color: hovered ? "var(--bg-primary)" : "var(--accent)",
               fontFamily: "var(--font-cinzel)",
@@ -619,7 +624,6 @@ function ProductCard({
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.boxShadow = "0 4px 16px rgba(201,168,76,0.4)";
-              el.style.backgroundPosition = "right center";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";

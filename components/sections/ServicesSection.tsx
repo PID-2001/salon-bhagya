@@ -84,12 +84,20 @@ export default function ServicesSection() {
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 65%)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            width: "900px",
+            height: "900px",
+            background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 65%)",
+          }}
         />
         <div
-          className="absolute bottom-0 right-0 w-[500px] h-[500px]"
-          style={{ background: "radial-gradient(circle at bottom right, rgba(var(--accent-rgb), 0.05) 0%, transparent 65%)" }}
+          className="absolute bottom-0 right-0"
+          style={{
+            width: "500px",
+            height: "500px",
+            background: "radial-gradient(circle at bottom right, rgba(var(--accent-rgb), 0.05) 0%, transparent 65%)",
+          }}
         />
       </div>
 

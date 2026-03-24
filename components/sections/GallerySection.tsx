@@ -124,8 +124,10 @@ export default function GallerySection() {
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
+            width: "800px",
+            height: "800px",
             background:
               "radial-gradient(circle, rgba(var(--accent-rgb),0.04) 0%, transparent 65%)",
           }}

@@ -46,15 +46,19 @@ export default function AboutSection() {
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className="absolute top-0 left-0 w-[600px] h-[600px]"
+          className="absolute top-0 left-0"
           style={{
+            width: "600px",
+            height: "600px",
             background:
               "radial-gradient(circle at top left, rgba(var(--accent-rgb), 0.05) 0%, transparent 65%)",
           }}
         />
         <div
-          className="absolute bottom-0 right-0 w-[500px] h-[500px]"
+          className="absolute bottom-0 right-0"
           style={{
+            width: "500px",
+            height: "500px",
             background:
               "radial-gradient(circle at bottom right, rgba(var(--accent-rgb), 0.04) 0%, transparent 65%)",
           }}

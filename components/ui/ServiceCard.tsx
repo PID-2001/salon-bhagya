@@ -38,8 +38,10 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       {/* Popular badge */}
       {service.popular && (
         <div
-          className="absolute -top-3 left-[92px] z-20 px-3 py-[3px] rounded-full text-[10px] font-semibold tracking-widest uppercase"
+          className="absolute -top-3 z-20 px-3 rounded-full text-[10px] font-semibold tracking-widest uppercase"
           style={{
+            left: "92px",
+            paddingBlock: "3px",
             background: "var(--accent)",
             color: "var(--bg-primary)",
             fontFamily: "var(--font-cinzel)",
@@ -65,7 +67,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       >
         {/* ── LEFT PANEL ── */}
         <div
-          className="flex flex-col items-center gap-4 flex-shrink-0"
+          className="flex flex-col items-center gap-4 shrink-0"
           style={{
             width: "72px",
             padding: "1.5rem 0",
@@ -80,7 +82,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
         >
           {/* Icon */}
           <div
-            className="flex items-center justify-center rounded-xl flex-shrink-0"
+            className="flex items-center justify-center rounded-xl shrink-0"
             style={{
               width: "42px",
               height: "42px",
@@ -139,7 +141,7 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
               {service.tagline}
             </span>
             <span
-              className="flex items-center gap-1 flex-shrink-0"
+              className="flex items-center gap-1 shrink-0"
               style={{
                 fontFamily: "var(--font-cinzel)",
                 fontSize: "0.56rem",
