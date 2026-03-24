@@ -7,13 +7,14 @@ import { Menu, Sun, Moon, Scissors } from "lucide-react";
 import MobileDrawer from "./MobileDrawer";
 
 const NAV_LINKS = [
-  { label: "Home",         href: "/" },
-  { label: "Services",     href: "/#services" },
-  { label: "Appointments", href: "/appointments" },
-  { label: "Products",     href: "/products" },
-  { label: "Rentals",      href: "/rentals" },
-  { label: "Gallery",      href: "/#gallery" },
-  { label: "Contact",      href: "/#contact" },
+  { label: "Home",          href: "/" },
+  { label: "Services",      href: "/#services" },
+  { label: "About",         href: "/#about" },
+  { label: "Gallery",       href: "/#gallery" },
+  { label: "Products",      href: "/#products" },
+  { label: "Rentals",       href: "/#rentals" },
+  { label: "Testimonials",  href: "/#testimonials" },
+  { label: "Contact",       href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -33,7 +34,18 @@ export default function Navbar() {
 
   // Set active link based on pathname
   useEffect(() => {
-    setActiveLink(window.location.pathname);
+    const updateActiveLink = () => {
+      const { pathname, hash } = window.location;
+      setActiveLink(hash ? `${pathname}${hash}` : pathname);
+    };
+
+    updateActiveLink();
+    window.addEventListener("hashchange", updateActiveLink);
+    window.addEventListener("popstate", updateActiveLink);
+    return () => {
+      window.removeEventListener("hashchange", updateActiveLink);
+      window.removeEventListener("popstate", updateActiveLink);
+    };
   }, []);
 
   // Animate the underline indicator
@@ -180,7 +192,7 @@ export default function Navbar() {
 
             {NAV_LINKS.map((link) => (
               <Link
-                key={link.href}
+                key={`${link.label}-${link.href}`}
                 href={link.href}
                 onMouseEnter={handleLinkHover}
                 style={{
@@ -244,7 +256,7 @@ export default function Navbar() {
             </button>
 
             {/* Book CTA — hidden on small mobile */}
-            <Link href="/appointments" className="btn-gold cta-desktop" style={{ padding: "0.6rem 1.4rem", fontSize: "0.68rem" }}>
+            <Link href="/#contact" className="btn-gold cta-desktop" style={{ padding: "0.6rem 1.4rem", fontSize: "0.68rem" }}>
               Book Now
             </Link>
 

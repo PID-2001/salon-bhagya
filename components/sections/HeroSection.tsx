@@ -382,7 +382,7 @@ export default function HeroSection() {
           }}
         >
           <Link
-            href="/appointments"
+            href="/#contact"
             className="btn-gold"
             style={{ fontSize: "0.72rem", padding: "0.9rem 2.5rem" }}
           >

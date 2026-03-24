@@ -24,7 +24,7 @@ const FOOTER_LINKS = {
     { label: "Gallery",      href: "/#gallery" },
     { label: "Products",     href: "/#products" },
     { label: "Rentals",      href: "/#rentals" },
-    { label: "Appointments", href: "/appointments" },
+    { label: "Appointments", href: "/#contact" },
   ],
   Legal: [
     { label: "Privacy Policy",    href: "/privacy" },

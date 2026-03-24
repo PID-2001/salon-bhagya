@@ -671,7 +671,7 @@ export default function RentalsSection() {
             <GoldButton
               variant="outline"
               size="md"
-              href="/appointments"
+              href="/#contact"
               icon={<ChevronRight size={15} />}
             >
               Book an Appointment

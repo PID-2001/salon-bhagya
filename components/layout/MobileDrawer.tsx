@@ -125,7 +125,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
         <nav style={{ display: "flex", flexDirection: "column", gap: "0.25rem", flex: 1 }}>
           {links.map((link, i) => (
             <Link
-              key={link.href}
+              key={`${link.label}-${link.href}`}
               href={link.href}
               onClick={onClose}
               style={{
@@ -180,7 +180,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
             {isDark ? "Light Mode" : "Dark Mode"}
           </button>
 
-          <Link href="/appointments" onClick={onClose}>
+          <Link href="/#contact" onClick={onClose}>
             <span className="btn-gold" style={{ width: "100%", display: "flex" }}>
               Book Appointment
             </span>
