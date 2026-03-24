@@ -237,6 +237,8 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
             <GoldButton
               variant={hovered ? "filled" : "outline"}
               size="sm"
+              href="/#contact"
+              requiresAuth
               icon={<ArrowRight size={12} />}
             >
               Book

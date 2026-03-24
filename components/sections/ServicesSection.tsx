@@ -410,10 +410,10 @@ export default function ServicesSection() {
             Can't find what you're looking for? We offer custom packages too.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <GoldButton href="/#contact" variant="filled" size="lg">
+            <GoldButton href="/#contact" variant="filled" size="lg" requiresAuth>
               Book an Appointment
             </GoldButton>
-            <GoldButton href="/#contact" variant="outline" size="lg">
+            <GoldButton href="/#contact" variant="outline" size="lg" requiresAuth>
               Ask Us Anything
             </GoldButton>
           </div>

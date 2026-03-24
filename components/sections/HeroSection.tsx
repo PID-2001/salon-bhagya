@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { ChevronDown, Sparkles } from "lucide-react";
+import GoldButton from "@/components/ui/GoldButton";
 
 const BRAND_LETTERS = ["T", "H", "E", " ", "O", "N", "E"];
 
@@ -382,20 +382,12 @@ export default function HeroSection() {
             transition: "opacity 0.7s ease, transform 0.7s ease",
           }}
         >
-          <Link
-            href="/#contact"
-            className="btn-gold"
-            style={{ fontSize: "0.72rem", padding: "0.9rem 2.5rem" }}
-          >
+          <GoldButton href="/#contact" size="lg" requiresAuth>
             Book Appointment
-          </Link>
-          <Link
-            href="/#services"
-            className="btn-outline"
-            style={{ fontSize: "0.72rem", padding: "0.9rem 2.5rem" }}
-          >
+          </GoldButton>
+          <GoldButton href="/#services" variant="outline" size="lg">
             Explore Services
-          </Link>
+          </GoldButton>
         </div>
 
         {/* Stats Row */}

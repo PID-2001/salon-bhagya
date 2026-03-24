@@ -633,6 +633,7 @@ export default function RentalsSection() {
               variant="outline"
               size="md"
               href="/#contact"
+              requiresAuth
               icon={<ChevronRight size={15} />}
             >
               Book an Appointment

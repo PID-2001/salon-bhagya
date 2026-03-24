@@ -768,7 +768,7 @@ export default function TestimonialsSection() {
             Ready to create your own story with us?
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <GoldButton variant="filled" size="md" href="/#contact">
+            <GoldButton variant="filled" size="md" href="/#contact" requiresAuth>
               Book Your Visit
             </GoldButton>
             <GoldButton

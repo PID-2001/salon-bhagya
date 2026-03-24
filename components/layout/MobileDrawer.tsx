@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
 import { logout } from "@/lib/auth";
+import GoldButton from "@/components/ui/GoldButton";
 
 interface NavLink {
   label: string;
@@ -246,11 +247,15 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
             {isDark ? "Light Mode" : "Dark Mode"}
           </button>
 
-          <Link href="/#contact" onClick={onClose}>
-            <span className="btn-gold" style={{ width: "100%", display: "flex" }}>
-              Book Appointment
-            </span>
-          </Link>
+          <GoldButton
+            href="/#contact"
+            size="md"
+            requiresAuth
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+            onClick={() => onClose()}
+          >
+            Book Appointment
+          </GoldButton>
         </div>
       </aside>
     </>

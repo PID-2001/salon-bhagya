@@ -1,7 +1,6 @@
 "use client";
 
-// app/(auth)/register/page.tsx
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Loader2, Mail, Lock, User, Phone, Sparkles, CheckCircle2 } from "lucide-react";
@@ -50,7 +49,12 @@ export default function RegisterPage() {
   const [googleLoad, setGoogleLoad] = useState(false);
   const [success,    setSuccess]    = useState(false);
 
-  if (user) { router.replace("/"); return null; }
+  // ✅ Fix: Use useEffect for redirect instead of doing it during render
+  useEffect(() => {
+    if (user && !success) {
+      router.replace("/");
+    }
+  }, [user, router, success]);
 
   const strength = getStrength(password);
 
@@ -60,6 +64,8 @@ export default function RegisterPage() {
       "auth/email-already-in-use": "An account with this email already exists.",
       "auth/weak-password":        "Password must be at least 6 characters.",
       "auth/invalid-email":        "Please enter a valid email address.",
+      "auth/popup-closed-by-user": "Google sign-in was cancelled. Please try again.",
+      "auth/popup-blocked":        "Popup was blocked by your browser. Please allow popups for this site.",
     };
     return map[code] ?? "Something went wrong. Please try again.";
   }
@@ -81,6 +87,7 @@ export default function RegisterPage() {
     try {
       await registerWithEmail(email, password, name);
       setSuccess(true);
+      // Redirect after 1.8 seconds
       setTimeout(() => router.replace("/"), 1800);
     } catch (err) {
       setError(parseError(err));
@@ -94,7 +101,8 @@ export default function RegisterPage() {
     setGoogleLoad(true);
     try {
       await loginWithGoogle();
-      router.replace("/");
+      // No need to setSuccess or redirect here - the useEffect will handle it
+      // when user state updates from Firebase
     } catch (err) {
       setError(parseError(err));
     } finally {
@@ -114,6 +122,7 @@ export default function RegisterPage() {
     position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)",
   };
 
+  // ✅ Show success screen
   if (success) return (
     <main style={{ minHeight: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-primary)" }}>
       <div style={{ textAlign: "center" }}>
@@ -147,7 +156,7 @@ export default function RegisterPage() {
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,168,76,0.5)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,168,76,0.06)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,168,76,0.2)"; (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.05)"; }}
           >
-            {googleLoad ? <Loader2 size={16} /> : <GoogleIcon />}
+            {googleLoad ? <Loader2 size={16} style={{ animation: "spin 1s linear infinite" }} /> : <GoogleIcon />}
             Continue with Google
           </button>
 

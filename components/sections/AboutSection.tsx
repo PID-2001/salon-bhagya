@@ -124,7 +124,7 @@ export default function AboutSection() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <GoldButton href="/#contact" variant="filled" size="lg">
+                <GoldButton href="/#contact" variant="filled" size="lg" requiresAuth>
                   Book a Visit
                 </GoldButton>
                 <GoldButton href="/#services" variant="outline" size="lg">
