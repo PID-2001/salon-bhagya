@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 
 interface NavLink {
@@ -67,26 +68,15 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
       >
         {/* Drawer Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
-          <div>
-            <div style={{
-              fontFamily: "var(--font-cinzel)",
-              fontSize: "1.1rem",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-              color: "var(--accent)",
-            }}>
-              THE ONE
-            </div>
-            <div style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.3em",
-              color: "var(--text-muted)",
-              textTransform: "uppercase",
-              marginTop: "2px",
-            }}>
-              Salon Bhagya
-            </div>
+          <div style={{ maxWidth: "180px" }}>
+            <Image
+              src="/Logo.png"
+              alt="THE ONE | Salon Bhagya"
+              width={180}
+              height={100}
+              sizes="(max-width: 480px) 150px, 180px"
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
+            />
           </div>
 
           <button

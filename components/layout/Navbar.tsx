@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import { Menu, Sun, Moon, Scissors } from "lucide-react";
+import { Menu, Sun, Moon } from "lucide-react";
 import MobileDrawer from "./MobileDrawer";
 
 const NAV_LINKS = [
@@ -111,53 +112,41 @@ export default function Navbar() {
           {/* ── Logo ── */}
           <Link
             href="/"
-            style={{ display: "flex", flexDirection: "column", gap: "1px", textDecoration: "none", flexShrink: 0 }}
+            aria-label="THE ONE | Salon Bhagya"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textDecoration: "none",
+              flexShrink: 0,
+              position: "relative",
+            }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              {/* Scissor icon with gold glow */}
-              <div style={{
-                width:        "28px",
-                height:       "28px",
-                display:      "flex",
-                alignItems:   "center",
-                justifyContent: "center",
-                background:   "linear-gradient(135deg, #C9A84C, #F5D78E)",
-                borderRadius: "50%",
-                flexShrink:   0,
-                boxShadow:    "0 0 12px rgba(201,168,76,0.4)",
-              }}>
-                <Scissors size={14} color="#080806" strokeWidth={2.5} />
-              </div>
-
-              <span
-                style={{
-                  fontFamily:     "var(--font-cinzel)",
-                  fontSize:       "1.2rem",
-                  fontWeight:     800,
-                  letterSpacing:  "0.2em",
-                  backgroundImage: "linear-gradient(135deg, #C9A84C 0%, #F5D78E 50%, #C9A84C 100%)",
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip:      "text",
-                  WebkitTextFillColor: "transparent",
-                  animation:      "shimmer 3s linear infinite",
-                  lineHeight:     1,
-                }}
-              >
-                THE ONE
-              </span>
-            </div>
-
+            <Image
+              src="/Logo.png"
+              alt="THE ONE | Salon Bhagya"
+              width={160}
+              height={90}
+              priority
+              sizes="(max-width: 768px) 120px, 160px"
+              style={{
+                width: "clamp(120px, 10vw, 170px)",
+                height: "auto",
+                objectFit: "contain",
+                filter: isDark ? "none" : "drop-shadow(0 4px 12px rgba(0,0,0,0.08))",
+              }}
+            />
             <span style={{
-              fontFamily:    "var(--font-cormorant)",
-              fontSize:      "0.58rem",
-              letterSpacing: "0.38em",
-              color:         "var(--text-muted)",
-              textTransform: "uppercase",
-              paddingLeft:   "36px",
-              lineHeight:    1,
+              position: "absolute",
+              width: "1px",
+              height: "1px",
+              padding: 0,
+              margin: "-1px",
+              overflow: "hidden",
+              clip: "rect(0,0,0,0)",
+              whiteSpace: "nowrap",
+              border: 0,
             }}>
-              Salon Bhagya
+              THE ONE | Salon Bhagya
             </span>
           </Link>
 

@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent, ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 import {
-  Scissors, MessageCircle,
+  MessageCircle,
   MapPin, Phone, Mail, Heart, ArrowUp,
 } from "lucide-react";
 
@@ -174,38 +175,22 @@ export default function Footer() {
             }}
           >
             {/* Brand block */}
-            <div style={{ maxWidth: "340px" }}>
+            <div style={{ maxWidth: "360px" }}>
               {/* Logo */}
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                <div style={{
-                  width:         "44px",
-                  height:        "44px",
-                  background:    "linear-gradient(135deg,#b8860b,#c9a84c)",
-                  borderRadius:  "50%",
-                  display:       "flex",
-                  alignItems:    "center",
-                  justifyContent:"center",
-                  boxShadow:     "0 0 20px rgba(201,168,76,0.3)",
-                }}>
-                  <Scissors size={20} color="#080806" />
-                </div>
-                <div>
-                  <div style={{
-                    fontFamily:    "var(--font-cinzel)",
-                    fontSize:      "1rem",
-                    fontWeight:    800,
-                    background:    "linear-gradient(135deg,#b8860b,#fcd34d,#b8860b)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor:  "transparent",
-                    letterSpacing: "0.15em",
-                  }}>THE ONE</div>
-                  <div style={{
-                    fontFamily:    "var(--font-cormorant)",
-                    fontSize:      "0.7rem",
-                    color:         "var(--text-muted)",
-                    letterSpacing: "0.12em",
-                  }}>Salon Bhagya</div>
-                </div>
+              <div style={{ marginBottom: "16px" }}>
+                <Image
+                  src="/Logo.png"
+                  alt="THE ONE | Salon Bhagya"
+                  width={260}
+                  height={146}
+                  sizes="(max-width: 768px) 200px, 260px"
+                  style={{
+                    width: "min(260px, 70vw)",
+                    height: "auto",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 8px 22px rgba(0,0,0,0.25))",
+                  }}
+                />
               </div>
 
               <p style={{
