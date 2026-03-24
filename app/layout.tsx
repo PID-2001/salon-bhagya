@@ -4,6 +4,7 @@ import { Playfair_Display, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://salonbhagya.lk"),
   title: {
     default: "THE ONE | Salon Bhagya",
     template: "%s | THE ONE · Salon Bhagya",
@@ -62,9 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${playfair.variable} ${sourceSerif.variable}`}>
         <ThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 import { Menu, Sun, Moon } from "lucide-react";
+import UserMenu from "@/components/auth/UserMenu";
 import MobileDrawer from "./MobileDrawer";
 
 const NAV_LINKS = [
@@ -244,10 +245,9 @@ export default function Navbar() {
               }
             </button>
 
-            {/* Book CTA — hidden on small mobile */}
-            <Link href="/#contact" className="btn-gold cta-desktop" style={{ padding: "0.6rem 1.4rem", fontSize: "0.68rem" }}>
-              Book Now
-            </Link>
+            <div className="user-menu-desktop">
+              <UserMenu />
+            </div>
 
             {/* Hamburger — mobile only */}
             <button
@@ -286,17 +286,14 @@ export default function Navbar() {
 
       {/* Responsive styles */}
       <style>{`
-        .desktop-nav { display: none !important; }
-        .cta-desktop  { display: none !important; }
-        .hamburger-btn { display: flex !important; }
-
-        @media (min-width: 768px) {
-          .cta-desktop { display: inline-flex !important; }
-        }
+        .desktop-nav        { display: none !important; }
+        .hamburger-btn      { display: flex !important; }
+        .user-menu-desktop  { display: none !important; }
 
         @media (min-width: 1024px) {
-          .desktop-nav   { display: flex !important; }
-          .hamburger-btn { display: none !important; }
+          .desktop-nav        { display: flex !important; }
+          .hamburger-btn      { display: none !important; }
+          .user-menu-desktop  { display: block !important; }
         }
       `}</style>
 

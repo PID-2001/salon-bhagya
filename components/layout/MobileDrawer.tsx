@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
+import { useAuth } from "@/context/AuthContext";
 
 interface NavLink {
   label: string;
@@ -19,6 +20,7 @@ interface MobileDrawerProps {
 
 export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
   const { theme, toggleTheme, isDark } = useTheme();
+  const { user } = useAuth();
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -146,6 +148,45 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
 
         {/* Bottom Actions */}
         <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {/* Auth actions for mobile */}
+          {!user && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <Link
+                href="/login"
+                onClick={onClose}
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                  fontFamily: "var(--font-cinzel)",
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--text-secondary)",
+                  padding: "0.6rem 1rem",
+                  border: "1px solid var(--border-subtle)",
+                  borderRadius: "4px",
+                  textDecoration: "none",
+                }}
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                onClick={onClose}
+                className="btn-gold"
+                style={{
+                  width: "100%",
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  padding: "0.65rem 1rem",
+                  fontSize: "0.75rem",
+                }}
+              >
+                Register
+              </Link>
+            </div>
+          )}
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
