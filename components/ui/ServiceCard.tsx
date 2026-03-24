@@ -38,10 +38,11 @@ export default function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       {/* Popular badge */}
       {service.popular && (
         <div
-          className="absolute -top-3 z-20 px-3 rounded-full text-[10px] font-semibold tracking-widest uppercase"
+          className="absolute -top-3 z-20 rounded-full text-[10px] font-semibold tracking-widest uppercase"
           style={{
             left: "92px",
-            paddingBlock: "3px",
+            paddingBlock: "4px",
+            paddingInline: "0.85rem",
             background: "var(--accent)",
             color: "var(--bg-primary)",
             fontFamily: "var(--font-cinzel)",
