@@ -287,7 +287,7 @@ function RentalCard({ item, index }: { item: RentalItem; index: number }) {
         {item.badge && (
           <div style={{
             position: "absolute",
-            top: "16px",
+            top: "20px",
             right: "16px",
             background: item.badgeType === "gold"
               ? "linear-gradient(90deg,#b8860b,#c9a84c)"
