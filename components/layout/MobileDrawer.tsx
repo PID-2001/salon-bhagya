@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
+import { logout } from "@/lib/auth";
 
 interface NavLink {
   label: string;
@@ -19,8 +21,9 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerProps) {
-  const { theme, toggleTheme, isDark } = useTheme();
-  const { user } = useAuth();
+  const { toggleTheme, isDark } = useTheme();
+  const { user, profile } = useAuth();
+  const router = useRouter();
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -31,6 +34,12 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
     }
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  async function handleSignOut() {
+    await logout();
+    onClose();
+    router.push("/");
+  }
 
   return (
     <>
@@ -111,7 +120,72 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
         </div>
 
         {/* Divider */}
-        <div style={{ height: "1px", background: "linear-gradient(90deg, var(--accent), transparent)", marginBottom: "2.5rem" }} />
+        <div style={{ height: "1px", background: "linear-gradient(90deg, var(--accent), transparent)", marginBottom: "1.5rem" }} />
+
+        {/* Auth Actions */}
+        {!user ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem", marginBottom: "2rem" }}>
+            <Link
+              href="/login"
+              onClick={onClose}
+              style={{
+                width: "100%",
+                textAlign: "center",
+                fontFamily: "var(--font-cinzel)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--text-secondary)",
+                padding: "0.75rem 1rem",
+                border: "1px solid var(--border-subtle)",
+                borderRadius: "4px",
+                textDecoration: "none",
+              }}
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/register"
+              onClick={onClose}
+              className="btn-gold"
+              style={{
+                width: "100%",
+                display: "inline-flex",
+                justifyContent: "center",
+                padding: "0.8rem 1rem",
+                fontSize: "0.75rem",
+              }}
+            >
+              Register
+            </Link>
+          </div>
+        ) : (
+          <div style={{ marginBottom: "2rem", padding: "0.5rem 0", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.2rem",
+              fontFamily: "var(--font-cinzel)",
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em",
+              color: "var(--text-secondary)",
+            }}>
+              <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>
+                {profile?.displayName ?? user.displayName ?? user.email ?? "Guest"}
+              </span>
+              <span style={{ fontFamily: "var(--font-cormorant)", fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                {user.email}
+              </span>
+            </div>
+            <button
+              onClick={handleSignOut}
+              className="btn-gold"
+              style={{ width: "100%", padding: "0.8rem 1rem", fontSize: "0.75rem" }}
+            >
+              Sign Out
+            </button>
+          </div>
+        )}
 
         {/* Nav Links */}
         <nav style={{ display: "flex", flexDirection: "column", gap: "0.25rem", flex: 1 }}>
@@ -148,45 +222,6 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
 
         {/* Bottom Actions */}
         <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {/* Auth actions for mobile */}
-          {!user && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              <Link
-                href="/login"
-                onClick={onClose}
-                style={{
-                  width: "100%",
-                  textAlign: "center",
-                  fontFamily: "var(--font-cinzel)",
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "var(--text-secondary)",
-                  padding: "0.6rem 1rem",
-                  border: "1px solid var(--border-subtle)",
-                  borderRadius: "4px",
-                  textDecoration: "none",
-                }}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/register"
-                onClick={onClose}
-                className="btn-gold"
-                style={{
-                  width: "100%",
-                  display: "inline-flex",
-                  justifyContent: "center",
-                  padding: "0.65rem 1rem",
-                  fontSize: "0.75rem",
-                }}
-              >
-                Register
-              </Link>
-            </div>
-          )}
-
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
