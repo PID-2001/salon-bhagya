@@ -19,6 +19,10 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-cormorant",
 });
 
+const deploymentUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
   title: {
     default: "THE ONE | Salon Bhagya",
@@ -45,6 +49,7 @@ export const metadata: Metadata = {
     icon: "/Logo.png",
     shortcut: "/Logo.png",
   },
+  metadataBase: new URL(deploymentUrl),
   robots: { index: true, follow: true },
 };
 

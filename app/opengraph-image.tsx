@@ -1,23 +1,17 @@
 import { ImageResponse } from "next/og";
+import Logo from "@/public/Logo.png";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const logo = fetch(new URL("../public/Logo.png", import.meta.url)).then((res) => res.arrayBuffer());
+const deploymentUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
-function arrayBufferToDataUrl(buffer: ArrayBuffer) {
-  const bytes = new Uint8Array(buffer);
-  let binary = "";
-  for (const byte of bytes) {
-    binary += String.fromCharCode(byte);
-  }
-  return `data:image/png;base64,${btoa(binary)}`;
-}
+const logoSrc = new URL(Logo.src, deploymentUrl).toString();
 
-export default async function Image() {
-  const logoData = await logo;
-  const logoSrc = arrayBufferToDataUrl(logoData);
+export default function Image() {
 
   return new ImageResponse(
     (
