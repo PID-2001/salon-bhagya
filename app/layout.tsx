@@ -19,10 +19,6 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-cormorant",
 });
 
-const deploymentUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-
 export const metadata: Metadata = {
   title: {
     default: "THE ONE | Salon Bhagya",
@@ -38,18 +34,17 @@ export const metadata: Metadata = {
     description: "Where luxury meets artistry. Premium salon services, bridal packages & rental collections.",
     images: [
       {
-        url: new URL("/opengraph-image", deploymentUrl).toString(),
+        url: "/sosioal%20share.webp",
         width: 1200,
         height: 630,
-        alt: "THE ONE | Salon Bhagya logo",
+        alt: "THE ONE | Salon Bhagya social share",
       },
     ],
   },
   icons: {
-    icon: "/Logo.png",
-    shortcut: "/Logo.png",
+    icon: "/Logo.webp",
+    shortcut: "/Logo.webp",
   },
-  metadataBase: new URL(deploymentUrl),
   robots: { index: true, follow: true },
 };
 

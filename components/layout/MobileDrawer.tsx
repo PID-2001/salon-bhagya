@@ -70,7 +70,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "3rem" }}>
           <div style={{ maxWidth: "180px" }}>
             <Image
-              src="/Logo.png"
+              src="/Logo.webp"
               alt="THE ONE | Salon Bhagya"
               width={180}
               height={100}

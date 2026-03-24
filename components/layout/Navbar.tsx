@@ -122,7 +122,7 @@ export default function Navbar() {
             }}
           >
             <Image
-              src="/Logo.png"
+              src="/Logo.webp"
               alt="THE ONE | Salon Bhagya"
               width={160}
               height={90}

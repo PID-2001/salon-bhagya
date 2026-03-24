@@ -179,7 +179,7 @@ export default function Footer() {
               {/* Logo */}
               <div style={{ marginBottom: "16px" }}>
                 <Image
-                  src="/Logo.png"
+                  src="/Logo.webp"
                   alt="THE ONE | Salon Bhagya"
                   width={260}
                   height={146}
