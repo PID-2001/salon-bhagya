@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent, ReactNode } from "react";
 import Link from "next/link";
 import { useInView } from "framer-motion";
@@ -62,6 +62,19 @@ const SOCIALS: SocialLink[] = [
 
 // ─── SCROLL TO TOP ───────────────────────────────────────────────────────────
 function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      const heroHeight = document.getElementById("hero")?.offsetHeight ?? window.innerHeight * 0.8;
+      setVisible(window.scrollY > heroHeight - 80);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
+
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -81,8 +94,11 @@ function ScrollToTop() {
         justifyContent:  "center",
         cursor:          "pointer",
         boxShadow:       "0 4px 20px rgba(201,168,76,0.35)",
-        transition:      "transform 0.25s ease, box-shadow 0.25s ease",
+        transition:      "transform 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease",
         color:           "#080806",
+        opacity:         visible ? 1 : 0,
+        pointerEvents:   visible ? "auto" : "none",
+        transform:       visible ? "translateY(0) scale(1)" : "translateY(12px) scale(0.92)",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLButtonElement).style.transform   = "translateY(-3px) scale(1.08)";

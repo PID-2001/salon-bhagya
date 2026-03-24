@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Sparkles, MessageCircle, ChevronRight, Star, Package, Clock, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GoldButton from "@/components/ui/GoldButton";
+import { tr } from "framer-motion/client";
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────
 const WHATSAPP_NUMBER = "94771234567"; // ← REPLACE with real number
@@ -22,7 +23,7 @@ interface RentalItem {
   deposit: string;
   duration: string;
   badge?: string;
-  badgeType?: "gold" | "green" | "outline";
+  badgeType?: "gold" | "onyx" | "outline";
   features: string[];
   accentColor: string;
   iconBg: string;
@@ -60,7 +61,7 @@ const RENTALS: RentalItem[] = [
     deposit: "Rs. 6,000",
     duration: "1–2 days",
     badge: "New",
-    badgeType: "green",
+    badgeType: "onyx",
     features: ["3 brass lamp sizes", "Polished brass finish", "Wicks & oil included", "Setup guidance"],
     accentColor: "rgba(201,168,76,0.10)",
     iconBg: "linear-gradient(135deg,#1a1206,#8b6914)",
@@ -290,11 +291,11 @@ function RentalCard({ item, index }: { item: RentalItem; index: number }) {
             right: "16px",
             background: item.badgeType === "gold"
               ? "linear-gradient(90deg,#b8860b,#c9a84c)"
-              : item.badgeType === "green"
-                ? "rgba(34,197,94,0.85)"
+              : item.badgeType === "onyx"
+                ? "#080806"
                 : "transparent",
             border: item.badgeType === "outline" ? "1px solid var(--accent)" : "none",
-            color: item.badgeType === "green" ? "#fff" : item.badgeType === "outline" ? "var(--accent)" : "#080806",
+            color: item.badgeType === "onyx" ? "#c9a84c" : item.badgeType === "outline" ? "var(--accent)" : "#080806",
             fontSize: "0.58rem",
             fontFamily: "var(--font-cinzel)",
             fontWeight: 700,
@@ -519,46 +520,6 @@ export default function RentalsSection() {
           animate
           isInView={isInView}
         />
-
-        {/* WhatsApp info banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            background: "rgba(34,197,94,0.06)",
-            border: "1px solid rgba(34,197,94,0.2)",
-            borderRadius: "4px",
-            padding: "12px 20px",
-            marginBottom: "40px",
-          }}
-        >
-          <MessageCircle size={16} color="#22c55e" style={{ flexShrink: 0 }} />
-          <p style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "0.95rem",
-            color: "var(--text-secondary)",
-            margin: 0,
-          }}>
-            All rentals are arranged via{" "}
-            <span style={{ color: "#22c55e", fontWeight: 600 }}>WhatsApp</span>{" "}
-            — tap <strong style={{ color: "var(--accent)" }}>Enquire</strong> on any item to start a conversation, or{" "}
-            <button
-              onClick={handleGeneralEnquiry}
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                color: "#22c55e", fontFamily: "var(--font-cormorant)",
-                fontSize: "0.95rem", fontWeight: 700, textDecoration: "underline",
-                padding: 0,
-              }}
-            >
-              send a general enquiry
-            </button>.
-          </p>
-        </motion.div>
 
         {/* Category tabs */}
         <motion.div

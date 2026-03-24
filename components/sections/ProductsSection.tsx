@@ -198,38 +198,6 @@ export default function ProductsSection() {
           spaceBelow="clamp(1.75rem, 4vw, 2.75rem)"
         />
 
-        {/* WhatsApp banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            padding: "1rem 1.5rem",
-            borderRadius: "10px",
-            background: "rgba(37,211,102,0.06)",
-            border: "1px solid rgba(37,211,102,0.2)",
-            marginBottom: "clamp(2rem, 4vw, 3rem)",
-            flexWrap: "wrap",
-          }}
-        >
-          <MessageCircle size={18} color="#25D366" style={{ flexShrink: 0 }} />
-          <p
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "1rem",
-              color: "var(--text-secondary)",
-              flex: 1,
-            }}
-          >
-            All products are available via{" "}
-            <strong style={{ color: "#25D366" }}>WhatsApp order</strong>. Click
-            &quot;Order Now&quot; on any product to chat with us directly.
-          </p>
-        </motion.div>
-
         {/* Category filter */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -382,7 +350,7 @@ function ProductCard({
               product.badge === "Best Seller"
                 ? "var(--accent)"
                 : product.badge === "New"
-                ? "rgba(37,211,102,0.85)"
+                ? "linear-gradient(135deg, rgba(var(--accent-rgb),0.95), #F5D78E)"
                 : product.badge === "Premium"
                 ? "rgba(var(--accent-rgb),0.15)"
                 : "rgba(var(--accent-rgb),0.15)",
@@ -399,8 +367,14 @@ function ProductCard({
               product.badge === "Best Seller"
                 ? "var(--bg-primary)"
                 : product.badge === "New"
-                ? "#080806"
+                ? "#1b1305"
                 : "var(--accent)",
+            boxShadow:
+              product.badge === "New"
+                ? "0 0 18px rgba(var(--accent-rgb),0.35)"
+                : product.badge === "Best Seller"
+                ? "0 8px 22px rgba(var(--accent-rgb),0.25)"
+                : "none",
           }}
         >
           {product.badge}
