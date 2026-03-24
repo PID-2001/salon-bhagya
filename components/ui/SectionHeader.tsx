@@ -31,7 +31,7 @@ export default function SectionHeader({
       initial={animate ? { opacity: 0, y: 30 } : false}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`flex flex-col ${alignClass} mb-14`}
+      className={`flex flex-col ${alignClass} mb-20`}
     >
       <span className="section-label">{label}</span>
 
