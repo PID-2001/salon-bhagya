@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     siteName: "THE ONE | Salon Bhagya",
     title: "THE ONE | Salon Bhagya — Premium Luxury Salon",
     description: "Where luxury meets artistry. Premium salon services, bridal packages & rental collections.",
+    images: [
+      {
+        url: "/Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "THE ONE | Salon Bhagya logo",
+      },
+    ],
   },
   robots: { index: true, follow: true },
 };
