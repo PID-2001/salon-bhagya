@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: "Where luxury meets artistry. Premium salon services, bridal packages & rental collections.",
     images: [
       {
-        url: "/Logo.png",
+        url: new URL("/opengraph-image", deploymentUrl).toString(),
         width: 1200,
         height: 630,
         alt: "THE ONE | Salon Bhagya logo",
