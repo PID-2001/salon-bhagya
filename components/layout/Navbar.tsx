@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import { Menu, Sun, Moon } from "lucide-react";
+import { Menu, Sun, Moon, ChevronDown } from "lucide-react";
 import UserMenu from "@/components/auth/UserMenu";
 import MobileDrawer from "./MobileDrawer";
 
@@ -25,7 +25,9 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen]     = useState(false);
   const [activeLink, setActiveLink]     = useState("/");
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [moreOpen, setMoreOpen]         = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   // Detect scroll for glassmorphism effect
   useEffect(() => {
@@ -50,6 +52,16 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
   // Animate the underline indicator
   const handleLinkHover = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const link = e.currentTarget;
@@ -67,6 +79,10 @@ export default function Navbar() {
   const handleNavLeave = () => {
     setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
   };
+
+  const primaryLinks   = NAV_LINKS.slice(0, 3);
+  const secondaryLinks = NAV_LINKS.slice(3);
+  const secondaryActive = secondaryLinks.some((link) => link.href === activeLink);
 
   return (
     <>
@@ -180,7 +196,7 @@ export default function Navbar() {
               }}
             />
 
-            {NAV_LINKS.map((link) => (
+            {primaryLinks.map((link) => (
               <Link
                 key={`${link.label}-${link.href}`}
                 href={link.href}
@@ -203,6 +219,88 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+
+            <div ref={moreRef} style={{ position: "relative" }}>
+              <button
+                type="button"
+                onClick={() => setMoreOpen((open) => !open)}
+                style={{
+                  display:       "flex",
+                  alignItems:    "center",
+                  gap:           "6px",
+                  fontFamily:    "var(--font-cinzel)",
+                  fontSize:      "0.68rem",
+                  fontWeight:    500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  padding:       "0.5rem 0.85rem",
+                  border:        "none",
+                  background:    "transparent",
+                  color:         secondaryActive ? "var(--accent)" : moreOpen ? "var(--accent)" : "var(--text-secondary)",
+                  cursor:        "pointer",
+                  transition:    "color 0.2s ease",
+                  whiteSpace:    "nowrap",
+                }}
+                onMouseEnter={() => setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }))}
+              >
+                <span>More</span>
+                <ChevronDown
+                  size={12}
+                  style={{
+                    transition: "transform 0.25s ease",
+                    transform: moreOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </button>
+
+              <div
+                style={{
+                  position: "absolute",
+                  top: "calc(100% + 10px)",
+                  right: 0,
+                  minWidth: "200px",
+                  background: "var(--bg-secondary)",
+                  border: "1px solid rgba(201,168,76,0.25)",
+                  borderRadius: "4px",
+                  boxShadow: "0 18px 40px rgba(0,0,0,0.45)",
+                  opacity: moreOpen ? 1 : 0,
+                  transform: moreOpen ? "translateY(0)" : "translateY(-8px)",
+                  pointerEvents: moreOpen ? "auto" : "none",
+                  transition: "all 0.22s cubic-bezier(0.4,0,0.2,1)",
+                  zIndex: 100,
+                  overflow: "hidden",
+                }}
+              >
+                {secondaryLinks.map((link) => (
+                  <Link
+                    key={`${link.label}-${link.href}`}
+                    href={link.href}
+                    onClick={() => setMoreOpen(false)}
+                    style={{
+                      display: "block",
+                      padding: "0.55rem 0.95rem",
+                      fontFamily: "var(--font-cinzel)",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: activeLink === link.href ? "var(--accent)" : "var(--text-secondary)",
+                      textDecoration: "none",
+                      borderBottom: "1px solid rgba(201,168,76,0.08)",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = "rgba(201,168,76,0.08)";
+                      (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                      (e.currentTarget as HTMLAnchorElement).style.color = activeLink === link.href ? "var(--accent)" : "var(--text-secondary)";
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </nav>
 
           {/* ── Right Actions ── */}
