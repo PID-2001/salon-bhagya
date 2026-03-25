@@ -248,7 +248,7 @@ export default function MobileDrawer({ isOpen, onClose, links }: MobileDrawerPro
           </button>
 
           <GoldButton
-            href="/#contact"
+            href="/#booking"
             size="md"
             requiresAuth
             style={{ width: "100%", display: "flex", justifyContent: "center" }}

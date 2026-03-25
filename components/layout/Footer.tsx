@@ -25,7 +25,7 @@ const FOOTER_LINKS = {
     { label: "Gallery",      href: "/#gallery" },
     { label: "Products",     href: "/#products" },
     { label: "Rentals",      href: "/#rentals" },
-    { label: "Appointments", href: "/#contact" },
+    { label: "Appointments", href: "/#booking" },
   ],
   Legal: [
     { label: "Privacy Policy",    href: "/privacy" },
@@ -58,7 +58,7 @@ type SocialLink = {
 const SOCIALS: SocialLink[] = [
   { icon: <InstagramGlyph />, href: "https://instagram.com/salonbhagya", label: "Instagram", color: "#e1306c" },
   { icon: <FacebookGlyph />, href: "https://facebook.com/salonbhagya", label: "Facebook", color: "#1877f2" },
-  { icon: <MessageCircle size={16} />, href: "https://wa.me/94771234567", label: "WhatsApp", color: "#22c55e" },
+  { icon: <MessageCircle size={16} />, href: "https://wa.me/94772962645", label: "WhatsApp", color: "#22c55e" },
 ];
 
 // ─── SCROLL TO TOP ───────────────────────────────────────────────────────────
@@ -208,7 +208,7 @@ export default function Footer() {
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {[
                   { icon: <MapPin size={12} color="#C9A84C" />, text: "123 Main Street, Negombo, Sri Lanka" },
-                  { icon: <Phone  size={12} color="#C9A84C" />, text: "+94 77 123 4567" },
+                  { icon: <Phone  size={12} color="#C9A84C" />, text: "+94 77 296 2645" },
                   { icon: <Mail   size={12} color="#C9A84C" />, text: "hello@salonbhagya.lk" },
                 ].map(({ icon, text }) => (
                   <div key={text} style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>

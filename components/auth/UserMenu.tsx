@@ -157,8 +157,8 @@ export default function UserMenu() {
         {/* Links */}
         <nav style={{ padding: "6px" }}>
           {[
-            { href: "/profile",      icon: <User size={13} />,     label: "My Profile" },
-            { href: "/appointments", icon: <Calendar size={13} />, label: "My Appointments" },
+            { href: "/profile",                icon: <User size={13} />,     label: "My Profile" },
+            { href: "/appointments/my-bookings", icon: <Calendar size={13} />, label: "My Appointments" },
             ...(isAdmin ? [{ href: "/admin", icon: <Settings size={13} />, label: "Admin Panel" }] : []),
           ].map(item => (
             <Link

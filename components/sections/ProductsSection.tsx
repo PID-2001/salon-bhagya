@@ -140,7 +140,7 @@ const PRODUCTS: Product[] = [
 
 const CATEGORIES = ["All", "Skincare", "Fashion"];
 
-const WHATSAPP_NUMBER = "94771234567"; // ← replace with real number
+const WHATSAPP_NUMBER = "94772962645"; // ← replace with real number
 
 export default function ProductsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -310,7 +310,24 @@ function ProductCard({
 }) {
   const [hovered, setHovered] = useState(false);
 
-  const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(product.whatsappMsg)}`;
+  const buildWhatsappMessage = (item: Product) => {
+    const lines = [
+      item.whatsappMsg || `Hi! I would like to know more about the ${item.name}.`,
+      "",
+      `Product: ${item.name}`,
+      `Category: ${item.category}`,
+      `Price shown: ${item.price}`,
+      "",
+      "Please confirm availability, payment options, and next steps.",
+      "",
+      "Name:",
+      "Phone:",
+      "Preferred pickup / delivery date:",
+    ];
+    return lines.join("\n");
+  };
+
+  const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildWhatsappMessage(product))}`;
 
   return (
     <motion.div

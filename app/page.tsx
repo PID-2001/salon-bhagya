@@ -6,6 +6,7 @@ import ProductsSection from "@/components/sections/ProductsSection";
 import RentalsSection from "@/components/sections/RentalsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import BookingSection from "@/components/sections/BookingSection";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <ProductsSection />
       <RentalsSection />
       <TestimonialsSection />
+      <BookingSection />
       <ContactSection />
     </main>
   );

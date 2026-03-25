@@ -8,7 +8,7 @@ import GoldButton from "@/components/ui/GoldButton";
 import { tr } from "framer-motion/client";
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────
-const WHATSAPP_NUMBER = "94771234567"; // ← REPLACE with real number
+const WHATSAPP_NUMBER = "94772962645"; // ← REPLACE with real number
 
 // ─── TYPES ─────────────────────────────────────────────────────────────────
 type Category = "All" | "Magulporu" | "Sarees" | "Jewelry";
@@ -192,7 +192,22 @@ function RentalCard({ item, index }: { item: RentalItem; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   const handleWhatsApp = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(item.whatsappMsg)}`;
+    const message = [
+      item.whatsappMsg || `Hi! I'm interested in renting the ${item.name}.`,
+      "",
+      `Item: ${item.name}`,
+      `Category: ${item.category}`,
+      `Tariff: ${item.pricePerDay} (${item.duration})`,
+      `Deposit: ${item.deposit}`,
+      "",
+      "Please confirm availability, pickup/return process, and required documents.",
+      "",
+      "Name:",
+      "Event date:",
+      "Preferred contact number:",
+    ].join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 
@@ -632,7 +647,7 @@ export default function RentalsSection() {
             <GoldButton
               variant="outline"
               size="md"
-              href="/#contact"
+              href="/appointments/book"
               requiresAuth
               icon={<ChevronRight size={15} />}
             >

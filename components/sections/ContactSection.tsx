@@ -17,11 +17,11 @@ import GoldButton from "@/components/ui/GoldButton";
 
 // ─── CONFIG — replace all placeholders ──────────────────────────────────────
 const CONTACT = {
-  phone:       "+94 77 123 4567",
-  whatsapp:    "94771234567",
+  phone:       "+94 77 296 2645",
+  whatsapp:    "94772962645",
   email:       "hello@salonbhagya.lk",
-  address:     "123 Main Street, Negombo, Western Province, Sri Lanka",
-  mapUrl:      "https://maps.google.com/?q=Negombo+Sri+Lanka",
+  address:     "The One, Salon Bhagya, Kurunegala Road, Halmillawewa",
+  mapUrl:      "https://maps.google.com/?q=The+One+Salon+Bhagya+Kurunegala+Road+Halmillawewa",
   instagram:   "https://instagram.com/salonbhagya",
   facebook:    "https://facebook.com/salonbhagya",
   hours: [

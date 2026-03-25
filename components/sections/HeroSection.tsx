@@ -382,7 +382,7 @@ export default function HeroSection() {
             transition: "opacity 0.7s ease, transform 0.7s ease",
           }}
         >
-          <GoldButton href="/#contact" size="lg" requiresAuth>
+          <GoldButton href="/#booking" size="lg" requiresAuth>
             Book Appointment
           </GoldButton>
           <GoldButton href="/#services" variant="outline" size="lg">
