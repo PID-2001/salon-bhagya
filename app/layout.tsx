@@ -2,9 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Playfair_Display, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -65,9 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${playfair.variable} ${sourceSerif.variable}`}>
         <ThemeProvider>
           <AuthProvider>
-            <Navbar />
-            {children}
-            <Footer />
+            <SiteChrome>
+              {children}
+            </SiteChrome>
           </AuthProvider>
         </ThemeProvider>
       </body>

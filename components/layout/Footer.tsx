@@ -10,6 +10,7 @@ import {
   MessageCircle,
   MapPin, Phone, Mail, Heart, ArrowUp,
 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const FOOTER_LINKS = {
@@ -119,6 +120,8 @@ function ScrollToTop() {
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const isInView  = useInView(footerRef, { once: true, margin: "-60px" });
+  const { isAdmin, isLoading } = useAuth();
+  const showAdminShortcut = isAdmin && !isLoading;
 
   return (
     <>
@@ -364,6 +367,37 @@ export default function Footer() {
             }}>
               Crafted with <Heart size={11} color="#C9A84C" fill="#C9A84C" /> in Sri Lanka
             </p>
+            {showAdminShortcut && (
+              <Link
+                href="/admin"
+                style={{
+                  paddingInline: "1.3rem",
+                  paddingBlock:  "0.55rem",
+                  borderRadius:  "999px",
+                  fontFamily:    "var(--font-cinzel)",
+                  fontSize:      "0.68rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  background:    "linear-gradient(120deg,#b8860b,#c9a84c)",
+                  color:         "#080806",
+                  textDecoration:"none",
+                  border:        "1px solid rgba(8,8,6,0.12)",
+                  boxShadow:     "0 8px 22px rgba(201,168,76,0.25)",
+                  transition:    "transform 0.2s ease, box-shadow 0.2s ease",
+                  whiteSpace:    "nowrap",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 12px 26px rgba(201,168,76,0.35)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 8px 22px rgba(201,168,76,0.25)";
+                }}
+              >
+                Go to Admin
+              </Link>
+            )}
           </motion.div>
 
         </div>
